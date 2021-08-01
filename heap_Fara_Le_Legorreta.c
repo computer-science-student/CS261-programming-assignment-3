@@ -20,7 +20,13 @@ void heapsort(int A[], int n){
 // percolate the key at index k down the heap A containing n elements
 void percolateDown(int A[], int n, int index){
     // start here
-    //
+    // takes in integer Array
+    int parent = A[index]; // get value at parent
+    int leftChild;
+    int rightChild;
+
+    leftChild = A[2 *index + 1]; // get left child
+    rightChild = A[2* index +2]; // get right child
 
 
 }
