@@ -23,7 +23,6 @@ void percolateDown(int A[], int n, int index){
     // takes in integer Array
     // needs to create a while loop to go down the array.
 
-    //while (index != n)
 
     int parent = A[index]; // get value at parent
     int leftChild;
@@ -35,23 +34,19 @@ void percolateDown(int A[], int n, int index){
     leftChild = A[2 *index + 1]; // get left child
     rightChild = A[2* index +2]; // get right child
 
+    // Swap if necessary
     // If one of the child nodes is smaller than the parent node,
     if (leftChild < parent || rightChild < parent) {
         // Get the smallest child node; store it in smallestChild
         if (leftChild < rightChild){
             smallestChild = leftChild;
-            // set left child node to be parent
-            A[2 *index + 1] = parent;
+            A[2 *index + 1] = parent; // set left child node to be parent
         } else {
             smallestChild = rightChild;
-            // set right child node to be parent
-            A[2* index +2] = parent;
+            A[2* index +2] = parent; // set right child node to be parent
         }
         // switch parent with smallestChild.
         A[index] = smallestChild;
-
-
-
     }
 
 
