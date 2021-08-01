@@ -36,10 +36,15 @@ void percolateDown(int A[], int n, int index){
         // Get the smallest child node; store it in smallestChild
         if (leftChild < rightChild){
             smallestChild = leftChild;
+            // set left child node to be parent
+            A[2 *index + 1] = parent;
         } else {
             smallestChild = rightChild;
+            // set right child node to be parent
+            A[2* index +2] = parent;
         }
         // switch parent with smallestChild.
+        A[index] = smallestChild;
 
 
 
