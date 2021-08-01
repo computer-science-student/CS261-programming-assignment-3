@@ -21,18 +21,22 @@ void heapsort(int A[], int n){
 void percolateDown(int A[], int n, int index){
     // start here
     // takes in integer Array
+    // needs to create a while loop to go down the array.
+
+    //while (index != n)
+
     int parent = A[index]; // get value at parent
     int leftChild;
     int rightChild;
     int smallestChild; // placeholder int for the smallest child node.
 
-    // Check if entry at leftchild is NULL? if ()
+    // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
 
     leftChild = A[2 *index + 1]; // get left child
     rightChild = A[2* index +2]; // get right child
 
     // If one of the child nodes is smaller than the parent node,
-    if (leftChild < parent || rightChild < parent){
+    if (leftChild < parent || rightChild < parent) {
         // Get the smallest child node; store it in smallestChild
         if (leftChild < rightChild){
             smallestChild = leftChild;
