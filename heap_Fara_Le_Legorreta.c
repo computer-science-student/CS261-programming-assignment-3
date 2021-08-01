@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
-#include "heap_test.c"
 
 // heapify array A containing n elements
 void heapify(int A[], int n);
 
 
 // heapsort array A containing n elements
-void heapsort(int A[], int n);
+void heapsort(int A[], int n){
+    return;
+}
 
 
 // percolate the key at index k down the heap A containing n elements
