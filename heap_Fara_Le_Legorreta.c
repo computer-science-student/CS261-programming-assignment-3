@@ -33,9 +33,7 @@ void percolateDown(int A[], int n, int index){
 
     int flag = 0;
 
-    while (!flag){
-
-        // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
+    while (!flag) {
 
         if ( (2 *index + 1) < n ){
             leftChild = A[2 *index + 1]; // get left child
@@ -66,6 +64,8 @@ void percolateDown(int A[], int n, int index){
             }
             // switch parent with smallestChild.
             A[index] = smallestChild;
+        } else {
+            flag = 1;
         }
 
     }
