@@ -23,7 +23,7 @@ void heapsort(int A[], int n){
     }
 
     percolateDown(A, n, 1);
-    printf("After percolation:\n");
+    printf("\nAfter percolation:\n");
 
     for (i=n-1; i>=0; i--) { // it displays the array from last to beginning
         printf("%d ", A[i]);
