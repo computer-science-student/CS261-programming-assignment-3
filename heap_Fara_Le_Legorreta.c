@@ -30,6 +30,17 @@ void percolateDown(int A[], int n, int index){
     int rightChild;
     int smallestChild; // placeholder int for the smallest child node.
 
+
+    int flag = 0;
+
+    while (!flag){
+
+
+
+    }
+
+
+
     // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
 
     if ( (2 *index + 1) < n ){
