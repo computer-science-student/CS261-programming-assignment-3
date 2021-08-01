@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
+#include <limits.h>
 
 // heapify array A containing n elements
 void heapify(int A[], int n){
@@ -31,8 +32,21 @@ void percolateDown(int A[], int n, int index){
 
     // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
 
-    leftChild = A[2 *index + 1]; // get left child
-    rightChild = A[2* index +2]; // get right child
+    if ( (2 *index + 1) < n ){
+        leftChild = A[2 *index + 1]; // get left child
+
+    } else {
+        // set leftChild to be max value
+        leftChild = INT_MAX; // makes use of LIMITS.h
+    }
+
+    if ( (2* index +2 ) < n){
+        rightChild = A[2* index +2]; // get right child
+    } else {
+        // Set rightChild to be max value
+        rightChild = INT_MAX; // makes of of LIMITS.h
+    }
+
 
     // Swap if necessary
     // If one of the child nodes is smaller than the parent node,
