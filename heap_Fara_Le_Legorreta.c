@@ -45,10 +45,17 @@ void percolateDown(int A[], int n, int index){
     int smallestChild; // placeholder int for the smallest child node.
 
 
-    int flag = 0;
+    int static flag = 0;
 
-    while (!flag) {
-        parent = A[index];
+    // base case
+    if ( (2 *index + 1) <= n && (2* index +2 ) <= n){
+        flag = 1;
+
+
+    }
+
+
+    parent = A[index];
         if ( (2 *index + 1) < n ){
             leftChild = A[2 *index + 1]; // get left child
 
@@ -90,8 +97,8 @@ void percolateDown(int A[], int n, int index){
         } else {
             flag = 1;
         }
-
+        percolateDown(A, n, index);
     }
 
 
-}
+
