@@ -39,7 +39,7 @@ void percolateDown(int A[], int n, int index){
     // needs to create a while loop to go down the array.
 
 
-    int parent = A[index]; // get value at parent
+    int parent; // get value at parent
     int leftChild;
     int rightChild;
     int smallestChild; // placeholder int for the smallest child node.
@@ -48,7 +48,7 @@ void percolateDown(int A[], int n, int index){
     int flag = 0;
 
     while (!flag) {
-
+        parent = A[index];
         if ( (2 *index + 1) < n ){
             leftChild = A[2 *index + 1]; // get left child
 
@@ -71,13 +71,22 @@ void percolateDown(int A[], int n, int index){
             if (leftChild < rightChild){
                 smallestChild = leftChild;
                 A[2 *index + 1] = parent; // set left child node to be parent
+                // change the parent
+                index = 2*index + 1; // new parent will be left child node
+
             } else {
+
                 smallestChild = rightChild;
                 A[2* index +2] = parent; // set right child node to be parent
+                // change the parent
+                index = 2* index + 2; // new parent will be right child node.
             }
             // switch parent with smallestChild.
             A[index] = smallestChild;
             printf("Swapping is done \n");
+
+            // Change the parent
+
         } else {
             flag = 1;
         }
