@@ -32,7 +32,7 @@ void percolateDown(int A[], int n, int index){
     rightChild = A[2* index +2]; // get right child
 
     // If one of the child nodes is smaller than the parent node,
-    if (parent < leftChild || parent < rightChild){
+    if (leftChild < parent || rightChild < parent){
         // Get the smallest child node; store it in smallestChild
         if (leftChild < rightChild){
             smallestChild = leftChild;
