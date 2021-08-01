@@ -35,43 +35,39 @@ void percolateDown(int A[], int n, int index){
 
     while (!flag){
 
+        // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
 
+        if ( (2 *index + 1) < n ){
+            leftChild = A[2 *index + 1]; // get left child
 
-    }
-
-
-
-    // Check if entry at leftchild is NULL? if () // Will this ever be necessary?
-
-    if ( (2 *index + 1) < n ){
-        leftChild = A[2 *index + 1]; // get left child
-
-    } else {
-        // set leftChild to be max value
-        leftChild = INT_MAX; // makes use of LIMITS.h
-    }
-
-    if ( (2* index +2 ) < n){
-        rightChild = A[2* index +2]; // get right child
-    } else {
-        // Set rightChild to be max value
-        rightChild = INT_MAX; // makes of of LIMITS.h
-    }
-
-
-    // Swap if necessary
-    // If one of the child nodes is smaller than the parent node,
-    if (leftChild < parent || rightChild < parent) {
-        // Get the smallest child node; store it in smallestChild
-        if (leftChild < rightChild){
-            smallestChild = leftChild;
-            A[2 *index + 1] = parent; // set left child node to be parent
         } else {
-            smallestChild = rightChild;
-            A[2* index +2] = parent; // set right child node to be parent
+            // set leftChild to be max value
+            leftChild = INT_MAX; // makes use of LIMITS.h
         }
-        // switch parent with smallestChild.
-        A[index] = smallestChild;
+
+        if ( (2* index +2 ) < n){
+            rightChild = A[2* index +2]; // get right child
+        } else {
+            // Set rightChild to be max value
+            rightChild = INT_MAX; // makes of of LIMITS.h
+        }
+
+
+        // Swap if necessary
+        // If one of the child nodes is smaller than the parent node,
+        if (leftChild < parent || rightChild < parent) {
+            // Get the smallest child node; store it in smallestChild
+            if (leftChild < rightChild){
+                smallestChild = leftChild;
+                A[2 *index + 1] = parent; // set left child node to be parent
+            } else {
+                smallestChild = rightChild;
+                A[2* index +2] = parent; // set right child node to be parent
+            }
+            // switch parent with smallestChild.
+            A[index] = smallestChild;
+        }
+
     }
 
 
