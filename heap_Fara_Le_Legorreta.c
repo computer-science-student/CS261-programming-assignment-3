@@ -15,7 +15,19 @@ void heapsort(int A[], int n){
     //one will need to make use of the max heap.
     // heapsort will call heapify.
     // This sorts the array.
+    printf("Before percolation:\n");
+
+    for (int i=n-1; i>=0; i--) { // it displays the array from last to beginning
+        printf("%d ", A[i]);
+    }
+
     percolateDown(A, n, 1);
+    printf("After percolation:\n");
+
+    for (int i=n-1; i>=0; i--) { // it displays the array from last to beginning
+        printf("%d ", A[i]);
+    }
+
     return;
 }
 
