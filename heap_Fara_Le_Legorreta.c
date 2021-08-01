@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
+#include "heap_test.c"
 
 // heapify array A containing n elements
 void heapify(int A[], int n);
