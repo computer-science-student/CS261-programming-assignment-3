@@ -63,7 +63,7 @@ void percolateDown(int A[], int n, int index){
             // Set rightChild to be max value
             rightChild = INT_MAX; // makes of of LIMITS.h
         }
-        printf("Left: %d, Right: %d\n", leftChild, rightChild);
+        printf("Parent: %d, Left: %d, Right: %d\n", parent, leftChild, rightChild);
         // Swap if necessary
         // If one of the child nodes is smaller than the parent node,
         if (leftChild < parent || rightChild < parent) {
