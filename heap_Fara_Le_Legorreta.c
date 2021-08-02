@@ -5,7 +5,15 @@
 
 // heapify array A containing n elements
 void heapify(int A[], int n){
+    // Checks the properties
     // will have to do a breath first traversal from the bottom to top.
+
+    /*
+    // traverse bottom to top
+    for (i = 0; i< n; i++){
+        //printf("%d ", A[i]);
+        percolateDown(int A[], int n, i);
+    } */
 
 }
 
@@ -22,10 +30,14 @@ void heapsort(int A[], int n){
         printf("%d ", A[i]);
     }
 
-    percolateDown(A, n, 1);
+    percolateDown(A, n, 4);
     printf("\nAfter percolation:\n");
 
-    for (i=n-1; i>=0; i--) { // it displays the array from last to beginning
+    /*
+    for (i=n-1; i>=0; i) { // it displays the array from last to beginning
+        printf("%d ", A[i]);
+    }*/
+    for (i = 0; i< n; i++){
         printf("%d ", A[i]);
     }
 
@@ -45,27 +57,23 @@ void percolateDown(int A[], int n, int index){
     int smallestChild; // placeholder int for the smallest child node.
 
 
-    int static flag = 0;
+    int flag = 0;
 
-    // base case
-    if ( (2 *index + 1) <= n && (2* index +2 ) <= n){
-        flag = 1;
+    while (!flag) {
+        parent = A[index];
+        int leftchildIndex = 2*index + 1;
+        int rightchildIndex = 2*index + 2;
 
-
-    }
-
-
-    parent = A[index];
-        if ( (2 *index + 1) < n ){
-            leftChild = A[2 *index + 1]; // get left child
+        if ( leftchildIndex < n ){
+            leftChild = A[leftchildIndex]; // get left child
 
         } else {
             // set leftChild to be max value
             leftChild = INT_MAX; // makes use of LIMITS.h
         }
 
-        if ( (2* index +2 ) < n){
-            rightChild = A[2* index +2]; // get right child
+        if ( rightchildIndex < n){
+            rightChild = A[rightchildIndex]; // get right child
         } else {
             // Set rightChild to be max value
             rightChild = INT_MAX; // makes of of LIMITS.h
@@ -77,28 +85,42 @@ void percolateDown(int A[], int n, int index){
             // Get the smallest child node; store it in smallestChild
             if (leftChild < rightChild){
                 smallestChild = leftChild;
-                A[2 *index + 1] = parent; // set left child node to be parent
+                A[leftchildIndex] = parent; // set left child node to be parent
                 // change the parent
-                index = 2*index + 1; // new parent will be left child node
+                A[index] = smallestChild;
+                index = leftchildIndex; // new parent will be left child node
+
 
             } else {
 
                 smallestChild = rightChild;
-                A[2* index +2] = parent; // set right child node to be parent
+                A[rightchildIndex] = parent; // set right child node to be parent
+                A[index] = smallestChild;
                 // change the parent
-                index = 2* index + 2; // new parent will be right child node.
+                index = rightchildIndex; // new parent will be right child node.
+
             }
             // switch parent with smallestChild.
-            A[index] = smallestChild;
-            printf("Swapping is done \n");
+            //printf("Swapping is done \n");
 
             // Change the parent
 
         } else {
             flag = 1;
         }
-        percolateDown(A, n, index);
+
     }
 
 
+}
 
+/*
+A[index]
+A[leftchildIndex]
+
+A[leftchildIndex] = parent
+A[index] = smallestChild
+
+
+A[rightchildIndex]
+*/
