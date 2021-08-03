@@ -87,7 +87,7 @@ void heapify(int A[], int n)
 void heapsort(int A[], int n)
 {
 	// heapify if not already in
-	// max-heap format.
+	// min-heap format.
 	heapify(A, n);
 
 	int end = n-1;
