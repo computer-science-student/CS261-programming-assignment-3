@@ -70,7 +70,7 @@ void heapify(int A[], int n)
 {
 	// Start with the parent of the
 	// last element in the array.
-	int parent = floor((n-1)/2);
+	int parent = (n-1)/2;
 	
 	// Proceed up the tree, giving each
 	// parent node to percolateDown until 
