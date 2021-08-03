@@ -1,126 +1,146 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "heap.h"
-#include <limits.h>
+#include <math.h>
+
+
+// percolate the key at index k down the heap
+// A containing n elements
+void percolateDown(int A[], int n, int index) {
+	int parent, child, swap;
+
+	// Set parent equal to the index that
+	// was passed. Find the left child of 
+	// this parent.
+	parent = index;
+	child = 2*parent + 1;
+
+	// As long as a child exists, continue
+	// to percolate down.
+	while (child <= n-1) {
+
+		// Set swap equal parent. If 
+		// swap remains parent, then
+		// there will nothing to swap.
+		swap = parent;
+
+		// If the key of parent is less
+		// than the key of child, then 
+		// the parent will need to be 
+		// replaced with a child.
+		if (A[parent] < A[child])
+			swap = child;
+		
+		// Before either exiting or
+		// executing the swap, compare the
+		// key of the right child to the 
+		// key of the current swap.
+		if (child + 1 <= n-1 && A[swap] < A[child + 1])
+			swap = child + 1;
+
+		// If the above statements did not
+		// change swap == parent, then
+		// there is nothing to swap, so exit.
+		if (swap == parent)
+			return;
+	
+		// Else, swap now contains the 
+		// the index of the child to
+		// swap with parent, so swap.
+		else {
+			int temp = A[parent];
+			A[parent] = A[swap];
+			A[swap] = temp;
+			
+			// The former parent has been
+			// moved down to the place of one 
+			// of its children. So, the algorithm
+			// will repeat, but first, update the 
+			// index of parent and update the
+			// index of its new left child.
+			parent = swap;
+			child = 2*parent + 1;
+		}
+	}
+	return;
+}
+
 
 // heapify array A containing n elements
-void heapify(int A[], int n){
-    // Checks the properties
-    // will have to do a breath first traversal from the bottom to top.
-
-    /*
-    // traverse bottom to top
-    for (i = 0; i< n; i++){
-        //printf("%d ", A[i]);
-        percolateDown(int A[], int n, i);
-    } */
-
+void heapify(int A[], int n)
+{
+	// Start with the parent of the
+	// last element in the array.
+	int parent = floor((n-1)/2);
+	
+	// Proceed up the tree, giving each
+	// parent node to percolateDown until 
+	// every parent node has been passed.
+	while (parent >= 0 ) {
+		percolateDown(A, n, parent);
+		parent = parent - 1;
+	}
+	return;
 }
 
-// heapsort array A containing n elements
-void heapsort(int A[], int n){
-    // In decending order. In order to have the array be in decending order
-    //one will need to make use of the max heap.
-    // heapsort will call heapify.
-    // This sorts the array.
-    int i;
-    printf("Before percolation:\n");
 
-    for (i=n-1; i>=0; i--) { // it displays the array from last to beginning
-        printf("%d ", A[i]);
-    }
+void heapsort(int A[], int n)
+{
+	// heapify if not already in
+	// max-heap format.
+	heapify(A, n);
 
-    percolateDown(A, n, 4);
-    printf("\nAfter percolation:\n");
+	int end = n-1;
+	
+	while (end > 0) {
+		// Swap the first entry with
+		// the last unsorted entry
+		int temp = A[end];
+		A[end] = A[0];
+		A[0] = temp;
 
-    /*
-    for (i=n-1; i>=0; i) { // it displays the array from last to beginning
-        printf("%d ", A[i]);
-    }*/
-    for (i = 0; i< n; i++){
-        printf("%d ", A[i]);
-    }
-
-    return;
-}
-
-// percolate the key at index k down the heap A containing n elements
-void percolateDown(int A[], int n, int index){
-    // start here
-    // takes in integer Array
-    // needs to create a while loop to go down the array.
-
-
-    int parent; // get value at parent
-    int leftChild;
-    int rightChild;
-    int smallestChild; // placeholder int for the smallest child node.
-
-
-    int flag = 0;
-
-    while (!flag) {
-        parent = A[index];
-        int leftchildIndex = 2*index + 1;
-        int rightchildIndex = 2*index + 2;
-
-        if ( leftchildIndex < n ){
-            leftChild = A[leftchildIndex]; // get left child
-
-        } else {
-            // set leftChild to be max value
-            leftChild = INT_MAX; // makes use of LIMITS.h
-        }
-
-        if ( rightchildIndex < n){
-            rightChild = A[rightchildIndex]; // get right child
-        } else {
-            // Set rightChild to be max value
-            rightChild = INT_MAX; // makes of of LIMITS.h
-        }
-        printf("Parent: %d, Left: %d, Right: %d\n", parent, leftChild, rightChild);
-        // Swap if necessary
-        // If one of the child nodes is smaller than the parent node,
-        if (leftChild < parent || rightChild < parent) {
-            // Get the smallest child node; store it in smallestChild
-            if (leftChild < rightChild){
-                smallestChild = leftChild;
-                A[leftchildIndex] = parent; // set left child node to be parent
-                // change the parent
-                A[index] = smallestChild;
-                index = leftchildIndex; // new parent will be left child node
-
-
-            } else {
-
-                smallestChild = rightChild;
-                A[rightchildIndex] = parent; // set right child node to be parent
-                A[index] = smallestChild;
-                // change the parent
-                index = rightchildIndex; // new parent will be right child node.
-
-            }
-            // switch parent with smallestChild.
-            //printf("Swapping is done \n");
-
-            // Change the parent
-
-        } else {
-            flag = 1;
-        }
-
-    }
-
-
+		// Swap has destroyed the heap
+		// property, so restore the 
+		// heap property.
+		end = end - 1;
+		percolateDown(A, end, 0);
+	}	
+	return;
 }
 
 /*
-A[index]
-A[leftchildIndex]
+int main() 
+{
+	int n = 8, j;
+	time_t t;
+	int arr[n];
 
-A[leftchildIndex] = parent
-A[index] = smallestChild
+	srand((unsigned) time(&t));
 
+	for (j = 0; j < n; j++) {
+		arr[j] = rand() % 200;
+	}
 
-A[rightchildIndex]
+	printf("\n Before heapify:\n");
+	for (j = 0; j < n; j++) {
+		printf(" %d", arr[j]);
+	}
+	
+	heapify(arr, n); 
+
+	printf("\n\n After heapify:\n");
+	for (j = 0; j < n; j++) {
+		printf(" %d", arr[j]);
+	}
+
+	printf("\n\n During heapsort:\n");	
+	heapsort(arr, n);
+	
+	printf("\n\n After heapsort:\n");
+	for (j = 0; j < n; j++) {
+		printf(" %d", arr[j]);
+	}
+	printf("\n\n");
+		
+	return 0;
+}
 */
